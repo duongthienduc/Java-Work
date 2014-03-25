@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import vn.jv.constant.WebConstants;
-import vn.jv.persist.domain.City;
 import vn.jv.persist.domain.Country;
 import vn.jv.persist.domain.Skill;
 import vn.jv.persist.domain.User;
@@ -31,6 +30,7 @@ import vn.jv.service.IJobService;
 import vn.jv.service.ILocationService;
 import vn.jv.service.ISkillService;
 import vn.jv.service.IWorkCategoryService;
+import vn.jv.web.bean.CityBean;
 import vn.jv.web.common.util.SecurityUtil;
 import vn.jv.web.common.util.WebHelper;
 import vn.jv.web.form.PostJobForm;
@@ -157,9 +157,9 @@ public class PostJobController extends BaseController {
 		
 		int selectedCountryId = postJobForm.getCountryId();
 		if (selectedCountryId != 0) {
-			List<City> cities = locationService.findByCountryId(selectedCountryId);
-			cities.add(0, new City(0, "Select"));
-			model.addAttribute("cities", cities);
+			List<CityBean> cityBeans = locationService.findByCountryId(selectedCountryId);
+			cityBeans.add(0, new CityBean(0, "Select", 0));
+			model.addAttribute("cities", cityBeans);
 		}
 	}
 
