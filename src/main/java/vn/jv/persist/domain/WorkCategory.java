@@ -1,7 +1,9 @@
 package vn.jv.persist.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -20,17 +22,12 @@ public class WorkCategory implements Serializable {
 	@Column(name="WORK_CATEGORY_ID")
 	private int workCategoryId;
 
-	private String domain;
+	@Column(name="WORK_CATEGORY_NAME")
+	private String workCategoryName;
 	
-	private String technology;
-
 	//bi-directional many-to-one association to Job
 	@OneToMany(mappedBy="workCategory")
 	private List<Job> jobs;
-
-	//bi-directional many-to-one association to TQuestion
-	@OneToMany(mappedBy="workCategory")
-	private List<TQuestion> tQuestions;
 
 	//bi-directional many-to-one association to WorkCategory
 	@ManyToOne
@@ -42,7 +39,10 @@ public class WorkCategory implements Serializable {
 	private List<WorkCategory> workCategories;
 
 
-
+	//bi-directional many-to-one association to Skill
+	@OneToMany(mappedBy="workCategory")
+	private List<Skill> skills;
+	
 	public WorkCategory() {
 	}
 
@@ -50,10 +50,9 @@ public class WorkCategory implements Serializable {
 		this.workCategoryId = workCategoryId;
 	}
 	
-	public WorkCategory(int workCategoryId, String domain, String technology) {
+	public WorkCategory(int workCategoryId, String workCategoryName, String technology) {
 		this.workCategoryId = workCategoryId;
-		this.domain = domain;
-		this.technology = technology;
+		this.workCategoryName = workCategoryName;
 	}
 	
 	public int getWorkCategoryId() {
@@ -62,14 +61,6 @@ public class WorkCategory implements Serializable {
 
 	public void setWorkCategoryId(int workCategoryId) {
 		this.workCategoryId = workCategoryId;
-	}
-
-	public String getTechnology() {
-		return this.technology;
-	}
-
-	public void setTechnology(String technology) {
-		this.technology = technology;
 	}
 
 	public List<Job> getJobs() {
@@ -92,28 +83,6 @@ public class WorkCategory implements Serializable {
 		job.setWorkCategory(null);
 
 		return job;
-	}
-
-	public List<TQuestion> getTQuestions() {
-		return this.tQuestions;
-	}
-
-	public void setTQuestions(List<TQuestion> TQuestions) {
-		this.tQuestions = TQuestions;
-	}
-
-	public TQuestion addTQuestion(TQuestion TQuestion) {
-		getTQuestions().add(TQuestion);
-		TQuestion.setWorkCategory(this);
-
-		return TQuestion;
-	}
-
-	public TQuestion removeTQuestion(TQuestion TQuestion) {
-		getTQuestions().remove(TQuestion);
-		TQuestion.setWorkCategory(null);
-
-		return TQuestion;
 	}
 
 	public WorkCategory getWorkCategory() {
@@ -146,12 +115,12 @@ public class WorkCategory implements Serializable {
 		return workCategory;
 	}
 
-	public String getDomain() {
-		return this.domain;
+	public String getWorkCategoryName() {
+		return workCategoryName;
 	}
 
-	public void setDomain(String domain) {
-		this.domain = domain;
+	public void setWorkCategoryName(String workCategoryName) {
+		this.workCategoryName = workCategoryName;
 	}
 
 }

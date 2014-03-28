@@ -1,8 +1,7 @@
-1. Build and deploy project
-	+ Modify CATALINA HOME directory in pom.xml file:
-		<properties>
-			<catalinaHome>D:\Tool\apache-tomcat-7.0.47</catalinaHome>
-		</properties>
-	+ Run /release/deploy.bat
-	+ Start Tomcat and check if application is up and running: http://localhost:8080/Java-Work
-	
+1.Install maven apache:
+	+ http://www.mkyong.com/maven/how-to-install-maven-in-windows/
+2.Open deploy.bat and edit location project
+3.Open pom.xml and edit location catalinaHome 
+4.Execute deploy.bat
+5.Restart or start tomcat server
+6.Open link : http://localhost:8080/Java-Work
