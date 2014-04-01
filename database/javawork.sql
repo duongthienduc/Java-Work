@@ -212,8 +212,6 @@ DROP TABLE IF EXISTS `t_test`;
 
 CREATE TABLE `t_test` (
   `TEST_ID` int(11) NOT NULL,
-  `TITLE` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
-  `DESCRIPTION` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
   `TOTAL_QUESTION` int(11) NOT NULL DEFAULT '0',
   `TOTAL_TIME` int(11) NOT NULL DEFAULT '0',
   `DATE_CREATED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -249,10 +247,8 @@ CREATE TABLE `t_user_test` (
   `T_USER_TEST_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_ID` int(11) NOT NULL,
   `TEST_ID` int(11) NOT NULL,
-  `DURATION` int(11) NOT NULL DEFAULT '0',
   `CORRECT_COUNT` int(11) NOT NULL DEFAULT '0',
   `SCORE` int(11) NOT NULL,
-  `RETEST_COUNT` int(11) NOT NULL DEFAULT '0',
   `FINISHED_DATED` datetime NOT NULL,
   PRIMARY KEY (`T_USER_TEST_ID`),
   KEY `FK_t_user_test_user_user_id` (`USER_ID`),
@@ -388,9 +384,12 @@ CREATE TABLE `work_category` (
 
 /*Data for the table `work_category` */
 
+
+
 insert  into `work_category`(`WORK_CATEGORY_ID`,`WORK_CATEGORY_NAME`,`PARENT_WORK_CATEGORY_ID`) values (1,'Graphic Designer',NULL),(2,'Front End Developer',NULL),(3,'Java Developer',NULL),(4,'PHP Developer',NULL),(5,'Ruby Developer',NULL),(6,'.NET Developer',NULL),(7,'Database Administrator',NULL),(8,'IT Administrator',NULL),(9,'Mobile Developer',NULL),(10,'C/C++ Developer',NULL),(13,'Embedded System',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
